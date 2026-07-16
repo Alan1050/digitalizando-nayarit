@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Juventus",
+    "route": "/juventus",
+    "page": "Juventus",
+    "logo": "Juventus/images/Logo.jpg",
+    "sector": "Alimentos",
+    "category": "Restaurantes",
+    "location": "Tepic, Nayarit",
+    "description": "Café, restaurante y bar con desayunos, comidas, antojitos y bebidas en el centro de Tepic.",
+    "contact": "311 216 4172",
+    "tags": ["Desayunos", "Comida mexicana", "Café", "Bar"],
+    "verified": true,
+    "featured": true,
+    "seo": {
+      "title": "Juventus Café Restaurant Bar en Tepic",
+      "description": "Conoce Juventus en el centro de Tepic: desayunos, comidas, antojitos, café y coctelería. Consulta su menú, ubicación, teléfono y horarios.",
+      "keywords": [
+        "Juventus Tepic",
+        "restaurante en Tepic",
+        "desayunos en Tepic",
+        "café en Tepic"
+      ],
+      "schemaType": "Restaurant"
+    }
+  }
+]

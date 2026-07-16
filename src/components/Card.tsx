@@ -1,5 +1,5 @@
 import type { KeyboardEvent, ReactNode } from "react";
-import Logo from "../assets/DigitalízandoANayarit.png";
+import { getBusinessLogoUrl } from "../data/businesses";
 import type { Business } from "../types/business";
 
 type BusinessCardProps = {
@@ -52,7 +52,10 @@ function Card(props: CardProps) {
       tabIndex={0}
     >
       <div className="business-card-media">
-        <img src={business.imageUrl ?? Logo} alt="" />
+        <img
+          src={getBusinessLogoUrl(business)}
+          alt={`Logo de ${business.name}`}
+        />
       </div>
       <div className="card-topline">
         <span>{business.category}</span>

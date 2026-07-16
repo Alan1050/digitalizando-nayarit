@@ -33,6 +33,28 @@
   transition: background 220ms ease, color 220ms ease;
 }
 
+.route-loading,
+.route-error {
+  min-height: 100svh;
+  display: grid;
+  place-content: center;
+  gap: 14px;
+  padding: 32px;
+  color: var(--surface-soft);
+  background: var(--ink-strong);
+  text-align: center;
+}
+
+.route-error h1,
+.route-error p {
+  margin: 0;
+}
+
+.route-error a {
+  color: var(--gold);
+  font-weight: 900;
+}
+
 .directory-page[data-theme='dark'] {
   --surface: #071d31;
   --surface-soft: #0d2f4d;
@@ -794,10 +816,11 @@
 }
 
 .business-card-media img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 16px;
+  object-fit: cover;
+  padding: 0;
 }
 
 .business-card-sponsored::before {

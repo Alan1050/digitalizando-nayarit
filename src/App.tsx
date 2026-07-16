@@ -2,11 +2,12 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
   useLocation,
 } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import "./App.css";
+import Seo from "./components/Seo";
+import BusinessRoute from "./pages/BusinessRoute";
 import HomePage from "./pages/HomePage";
 
 
@@ -35,9 +36,16 @@ function App() {
     <Router basename="/">
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Seo />
+              <HomePage />
+            </>
+          }
+        />
+        <Route path="*" element={<BusinessRoute />} />
       </Routes>
     </Router>
   );

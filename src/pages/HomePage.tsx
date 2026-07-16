@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 import Logo from "../assets/DigitalízandoANayarit.png";
 import Card from "../components/Card";
-import businesses from "../data/businesses.json";
+import { businesses } from "../data/businesses";
 import type { Business, BusinessFilters, SortBy, Theme } from "../types/business";
-import BusinessDetails from "./BusinessDetails";
 import Details from "./Details";
 
 const sectors = [
@@ -52,15 +52,13 @@ function interleaveSponsored(businesses: Business[]) {
 }
 
 function HomePage() {
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<BusinessFilters>({
     name: "",
     sector: "",
     sortBy: "featured",
   });
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-  const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(
-    null,
-  );
   const [theme, setTheme] = useState<Theme>("light");
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -145,23 +143,16 @@ function HomePage() {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
 
-  if (selectedBusiness) {
-    return (
-      <BusinessDetails
-        business={selectedBusiness}
-        onBack={() => setSelectedBusiness(null)}
-        onToggleTheme={toggleTheme}
-        theme={theme}
-      />
-    );
-  }
+  const openBusiness = (business: Business) => {
+    navigate(business.route);
+  };
 
   if (selectedCategory) {
     return (
       <Details
         businesses={selectedCategoryBusinesses}
         category={selectedCategory}
-        onOpenBusiness={setSelectedBusiness}
+        onOpenBusiness={openBusiness}
         onBack={() => setSelectedCategory("")}
         onToggleTheme={toggleTheme}
         theme={theme}
@@ -421,16 +412,7 @@ function HomePage() {
           className="directory-section"
           aria-labelledby="registered-title"
         >
-          <div className="section-heading">
-            <div>
-              <span className="eyebrow eyebrow-light">Resultados</span>
-              <h2 id="registered-title">Negocios encontrados</h2>
-              <p>
-                {filteredBusinesses.length} de {totalBusinesses} negocios
-                coinciden con la búsqueda.
-              </p>
-            </div>
-          </div>
+
 
           {filteredBusinesses.length > 0 ? (
             <div className="category-rows">
@@ -460,7 +442,7 @@ function HomePage() {
                         <Card
                           business={business}
                           key={business.id}
-                          onOpenBusiness={setSelectedBusiness}
+                          onOpenBusiness={openBusiness}
                           sponsored={business.featured}
                         />
                       ))}
